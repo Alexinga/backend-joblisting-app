@@ -1,0 +1,170 @@
+### GET HOMEPAGE
+
+GET http://localhost:5528
+
+### GET TEST PAGE
+
+GET http://localhost:5528/test/authTest
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZSI6IlVTRVIiLCJpYXQiOjE3NTY0ODYwMjMsImV4cCI6MTc1NjU3MjQyM30.cyR2JlSnvAcry4Z7Uo8BLAGFfBPA8OnwO7bxqEZfbKc
+
+
+### GET ADMIN PAGE
+GET http://localhost:5528/test/adminTest
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZSI6IlVTRVIiLCJpYXQiOjE3NTY0ODYwMjMsImV4cCI6MTc1NjU3MjQyM30.cyR2JlSnvAcry4Z7Uo8BLAGFfBPA8OnwO7bxqEZfbKc
+
+### GET API
+
+GET http://localhost:5528/api/names
+
+### POST API
+
+POST http://localhost:5528/api/names
+Content-Type: application/json
+
+{
+    "newName": "alissa"
+}
+
+### PUT API
+PUT http://localhost:5528/api/names
+Content-Type: application/json
+
+{
+    "currentName": "alissa",
+    "newName": "johnny"
+}
+
+
+### DELETE API
+
+DELETE http://localhost:5528/api/names
+Content-Type: application/json
+
+{
+    "name": "johnny"
+}
+
+
+
+### GET Job API
+
+GET http://localhost:5528/api/jobs
+
+### POST Job API
+
+POST http://localhost:5528/api/jobs
+Content-Type: application/json
+
+{
+    "title": "Angular Developer",
+    "description": "need angular slave",
+    "salary": 70000,
+    "jobType": "remote",
+    "position": "contract",
+    "companyId": 3,
+    "location": {
+        "city": "Queens",
+        "state": "NY",
+        "country": "USA"
+    },
+    "contact": {
+        "email": "cobbMarks@gmail.com",
+        "name": "Cobby Marks",
+        "phoneNumber": "4847890123"
+    }
+}
+
+### PUT Job API
+
+PUT http://localhost:5528/api/jobs
+Content-Type: application/json
+
+{
+    "id": 6,
+    "description": "need angular slaves"
+}
+
+
+### POST API USER REGISTER
+
+POST http://localhost:5528/api/auth/register
+Content-Type: application/json
+
+{
+    "name": "JesusLord123",
+    "email": "jsanchez@gmail.com",
+    "password": "password1"
+}
+
+### POST LOGIN PAGE
+
+POST http://localhost:5528/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "jsanchez@gmail.com",
+    "password": "password1"
+}
+
+
+### GET COMPANY
+
+GET http://localhost:5528/api/company
+
+### POST COMPANY 
+
+POST http://localhost:5528/api/company
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWgAUIO617
+
+------WebKitFormBoundary7MA4YWgAUIO617
+Content-Disposition: form-data; name="name"
+
+Test Company 2
+------WebKitFormBoundary7MA4YWgAUIO617--
+
+### PUT COMPANY IMAGE
+
+PUT http://localhost:5528/api/company/3
+Content-Type: application/json
+
+{
+    "companyImage": "test4.png"
+}
+
+
+### DELETE COMPANY 
+
+DELETE  http://localhost:5528/api/company/4
+Content-Type: application/json
+
+### GET USER
+
+GET http://localhost:5528/api/user
+
+
+### CREATE USER
+
+POST http://localhost:5528/api/user
+Content-Type: application/json
+
+{
+    "name": "test1",
+    "email": "testEmail@gmail.com",
+    "role": "USER"
+}
+
+### UPDATE USER
+
+PUT http://localhost:5528/api/user/5
+Content-Type: application/json
+
+{
+    "name": "test2"
+}
+
+
+### DELETE USER
+
+
+DELETE http://localhost:5528/api/user/5
+Content-Type: application/json
