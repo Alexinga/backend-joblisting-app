@@ -1,3 +1,4 @@
+import { AppError } from "../../../../core/utils/error/appError";
 import { IUserRepo } from "../../../user/domain/repositories/IUserRepo";
 import { IAuthRepo } from "../../domain/repositories/IAuthRepo";
 import { IPasswordResetRepo } from "../../domain/repositories/IPasswordResetRepo";
@@ -36,12 +37,13 @@ export class AuthService {
     // Instead of writing null in the method of hash to string | null
     // we instead can write a guard to help with any null or undefined scenarios
     if (!selectUser || !selectUser.password) {
-      throw new Error("invalid email or password");
+      throw new AppError(401, "Invalid email or password");
     }
 
     if (selectUser.authProvider === "GOOGLE" && !selectUser.password) {
-      throw new Error(
-        "This account was created using Google. Please sign in with Google."
+      throw new AppError(
+        401,
+        "This account was create using Google. Please sign in with Google."
       );
     }
     const passwordCheck = await this.authRepo.comparePasswordInterface({
@@ -50,7 +52,7 @@ export class AuthService {
     });
 
     if (!passwordCheck) {
-      throw new Error("Invalid password");
+      throw new AppError(401, "Invalid Password");
     }
 
     const { password: _, ...selectUserWithoutPassword } = selectUser;
@@ -61,7 +63,7 @@ export class AuthService {
   async getRefreshedUserData(id: number) {
     const selectUser = await this.userRepo.findUserByIdInterface(id);
     if (!selectUser) {
-      throw new Error("No user found");
+      throw new AppError(401, "The selected user was not found");
     }
 
     return selectUser;

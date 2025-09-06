@@ -2,11 +2,17 @@ import { Response } from "express";
 import { ZodError } from "zod";
 import { Prisma } from "../../../generated/prisma";
 import { AppError } from "./appError";
-
 import { JsonWebTokenError, TokenExpiredError } from "jsonwebtoken";
 
+enum PrismaErrorCode {
+  noRecordFound = "P2025",
+  dataAlreadyExists = "P2002",
+}
+
+// use ZodError as the argument to format error issues and to map over the issues
 export const formatZodError = (error: ZodError) => {
   return error.issues.map((err) => ({
+    // This helps join the array of errors into example.test.join
     field: err.path.join("."),
     message: err.message,
   }));
@@ -19,21 +25,21 @@ export const handleError = (error: unknown, res: Response) => {
       .json({ error: "Validation error", details: formatZodError(error) });
   }
 
-  if (error instanceof Prisma.PrismaClientKnownRequestError) {
-    switch (error.code) {
-      case "P2025":
-        return res.status(404).json({ error: "Record not found" });
-      case "P2002":
-        return res.status(409).json({ error: "Unique constraint failed" });
-      default:
-        return res.status(500).json({ error: error.message });
-    }
-  }
-
   if (error instanceof Prisma.PrismaClientValidationError) {
     return res
       .status(400)
       .json({ error: "Validation failed", message: error.message });
+  }
+
+  if (error instanceof Prisma.PrismaClientKnownRequestError) {
+    switch (error.code) {
+      case PrismaErrorCode.noRecordFound:
+        return res.status(404).json({ error: "Record not found" });
+      case PrismaErrorCode.dataAlreadyExists:
+        return res.status(409).json({ error: "Unique constraint failed" });
+      default:
+        return res.status(500).json({ error: error.message });
+    }
   }
 
   if (error instanceof Prisma.PrismaClientUnknownRequestError) {

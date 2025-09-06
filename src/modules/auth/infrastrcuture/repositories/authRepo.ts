@@ -6,6 +6,7 @@ import { IAuthRepo } from "../../domain/repositories/IAuthRepo";
 export class AuthRepository implements IAuthRepo {
   async hashPasswordInterface(passwordParam: string) {
     const password = await bcrypt.hash(passwordParam, 10);
+
     return new AuthEntity(password);
   }
 
