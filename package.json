@@ -8,6 +8,7 @@
     "@types/node": "^24.0.12",
     "@types/passport": "^1.0.17",
     "@types/passport-google-oauth20": "^2.0.16",
+    "@types/winston": "^2.4.4",
     "bcrypt": "^6.0.0",
     "dotenv": "^17.2.0",
     "jsonwebtoken": "^9.0.2",
@@ -31,6 +32,8 @@
     "helmet": "^8.1.0",
     "hpp": "^0.2.3",
     "passport": "^0.7.0",
+    "winston": "^3.17.0",
+    "winston-daily-rotate-file": "^5.0.0",
     "zod": "^4.0.5"
   },
   "name": "node_typescript_jobapp",

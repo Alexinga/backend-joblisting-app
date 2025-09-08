@@ -1,0 +1,3 @@
+{"level":"info","message":"An informational message."}
+{"level":"warn","message":"A warning that something might be wrong."}
+{"level":"error","message":"An error has occurred!"}

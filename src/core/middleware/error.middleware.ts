@@ -5,8 +5,8 @@ export const globalErrorHandler = (
   err: unknown,
   req: Request,
   res: Response,
-  _next: NextFunction
+  next: NextFunction
 ) => {
   handleError(err, res);
-  _next();
+  next();
 };

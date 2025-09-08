@@ -28,7 +28,10 @@ export class UserService {
   }
 
   async deleteUser(params: { id: number }) {
-    return this.userRepo.deleteUserInterface(params);
+    const user = await this.userRepo.deleteUserInterface(params);
+    const { password: _, ...userWithoutPassword } = user;
+    // return this.userRepo.deleteUserInterface(params);
+    return userWithoutPassword;
   }
 
   async findUserByEmail(email: string) {

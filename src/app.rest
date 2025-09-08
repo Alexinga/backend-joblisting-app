@@ -91,9 +91,9 @@ POST http://localhost:5528/api/auth/register
 Content-Type: application/json
 
 {
-    "name": "JesusLord123",
-    "email": "jsanchez@gmail.com",
-    "password": "password1"
+    "name": "test123",
+    "email": "test123@gmail.com",
+    "password": "password123"
 }
 
 ### POST LOGIN PAGE
@@ -104,6 +104,14 @@ Content-Type: application/json
 {
     "email": "jsanchez@gmail.com",
     "password": "password1"
+}
+
+### POST REFRESH TOKEN
+POST http://localhost:5528/api/auth/refresh
+Content-Type: application/json
+
+{
+    "id": 10
 }
 
 
@@ -166,5 +174,5 @@ Content-Type: application/json
 ### DELETE USER
 
 
-DELETE http://localhost:5528/api/user/5
+DELETE http://localhost:5528/api/user/9
 Content-Type: application/json
